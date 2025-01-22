@@ -1,12 +1,21 @@
 package org.example;
 
+import java.util.LinkedList;
+
 public class SimpleStack implements Stack {
+    private LinkedList<Item> items;
+
+    // Constructeur
+    public SimpleStack() {
+        this.items = new LinkedList<>();
+    }
     /**
      * Tests if this stack is empty
      */
     @Override
     public boolean isEmpty() {
-        return false;
+
+        return items.isEmpty();
     }
 
     /**
@@ -14,7 +23,8 @@ public class SimpleStack implements Stack {
      */
     @Override
     public int getSize() {
-        return 0;
+
+        return items.size();
     }
 
     /**
@@ -25,7 +35,7 @@ public class SimpleStack implements Stack {
      */
     @Override
     public void push(Item item) {
-
+        items.addFirst(item);
     }
 
     /**
@@ -33,7 +43,10 @@ public class SimpleStack implements Stack {
      */
     @Override
     public Item peek() throws EmptyStackException {
-        return null;
+        if(isEmpty()) {
+            throw new EmptyStackException();
+        }
+        return items.getFirst();
     }
 
     /**
@@ -44,6 +57,9 @@ public class SimpleStack implements Stack {
      */
     @Override
     public Item pop() throws EmptyStackException {
-        return null;
+        if (isEmpty()) {
+            throw new EmptyStackException();
+        }
+        return items.removeFirst();
     }
 }
