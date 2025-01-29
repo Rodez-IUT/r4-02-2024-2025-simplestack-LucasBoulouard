@@ -90,6 +90,26 @@ class SimpleStackTest {
         assertNull(stack.peek(), "Top of the stack should be null");
     }
 
+    @Test
+    @DisplayName("Test multiple push and pop operations")
+    public void testPushPopMultiple() throws EmptyStackException {
+        Stack stack = new SimpleStack();
+        Item item1 = new SimpleItem();
+        Item item2 = new SimpleItem();
+        Item item3 = new SimpleItem();
+
+        stack.push(item1);
+        stack.push(item2);
+        stack.push(item3);
+
+        assertEquals(3, stack.getSize(), "Stack should have three elements");
+
+        assertSame(item3, stack.pop(), "Popped item should be item3");
+        assertSame(item2, stack.pop(), "Popped item should be item2");
+        assertSame(item1, stack.pop(), "Popped item should be item1");
+
+        assertTrue(stack.isEmpty(), "Stack should be empty after all pops");
+    }
 
 
 
